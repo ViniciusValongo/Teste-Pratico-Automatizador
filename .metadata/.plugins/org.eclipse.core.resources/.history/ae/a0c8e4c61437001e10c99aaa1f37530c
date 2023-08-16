@@ -1,0 +1,11 @@
+package br.com.viniciusvalongo.testepratico.testpratico;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+
+@RunWith(Cucumber.class)
+public class Runner {
+
+
+}

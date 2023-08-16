@@ -1,0 +1,49 @@
+package br.com.viniciusvalongo.testepratico.attributes;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+
+public class CartPage {
+	
+	private WebDriver driver;
+	
+	@FindBy(linkText = "REMOVE")
+	private WebElement removerProduto;
+	
+	@FindBy(css = "label.roboto-bold.ng-scope")
+	private WebElement carrinhoazio;
+	
+	
+	//CONSTRUCTOR
+	public CartPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+
+
+	public WebElement getRemoverProduto() {
+		return removerProduto;
+	}
+
+
+	public void setRemoverProduto(WebElement removerProduto) {
+		this.removerProduto = removerProduto;
+	}
+
+
+	public WebElement getCarrinhoazio() {
+		return carrinhoazio;
+	}
+
+
+	public void setCarrinhoazio(WebElement carrinhoazio) {
+		this.carrinhoazio = carrinhoazio;
+	}
+	
+	//
+	
+	
+}

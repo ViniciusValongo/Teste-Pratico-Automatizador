@@ -1,0 +1,36 @@
+package br.com.viniciusvalongo.testepratico.tests;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import br.com.viniciusvalongo.testepratico.attributes.CartPage_Actions;
+import br.com.viniciusvalongo.testepratico.attributes.CheckoutPage_Actions;
+import br.com.viniciusvalongo.testepratico.attributes.HomePage_Action;
+import br.com.viniciusvalongo.testepratico.attributes.ProductPage_Actions;
+
+public class TestJunit {
+	
+	static WebDriver driver;
+	
+	static HomePage_Action hp;
+	static ProductPage_Actions pp;
+	static CheckoutPage_Actions ca;
+	static CartPage_Actions cp;
+	
+	@BeforeAll()
+	static void abrirBrowser() {		
+		System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver-win64\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://advantageonlineshopping.com/#/");		
+		driver.manage().window().maximize();
+		
+		//instancias
+		hp = new HomePage_Action(driver);
+		pp = new ProductPage_Actions(driver);
+		ca = new CheckoutPage_Actions(driver);
+		cp  = new CartPage_Actions(driver);
+		
+	}
+
+}

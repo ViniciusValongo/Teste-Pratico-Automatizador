@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.openqa.selenium.edge.EdgeDriver"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.AfterEach"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.AfterAll"/>
+    <fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
+    <fullyQualifiedTypeName name="io.cucumber.junit.Cucumber"/>
+    <fullyQualifiedTypeName name="io.cucumber.junit.CucumberOptions"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.chrome.ChromeDriver"/>
+    <fullyQualifiedTypeName name="java.util.concurrent.TimeUnit"/>
+    <fullyQualifiedTypeName name="org.junit.Assert"/>
+    <fullyQualifiedTypeName name="io.cucumber.java.After"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.WebDriverFactory"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.pagefactory.AjaxElementLocator"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.FindBys"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.pageobjects.HomePage"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.attributes.ProductPages_Actions"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.pageobjects.ProductPage"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.pageobjects.CartPage"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.pageobjects.CheckoutPage"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeAll"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.attributes.HomePage_Action"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.attributes.ProductPage_Actions"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.attributes.CheckoutPage_Actions"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.attributes.CartPage_Actions"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.PageFactory"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.FindBy"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.PageObject"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebElement"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.attributes.CheckoutAttributes"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.attributes.ProductAttributes"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.attributes.HomeAttributes"/>
+    <fullyQualifiedTypeName name="br.com.viniciusvalongo.testepratico.attributes.CartAttributes"/>
+</qualifiedTypeNameHistroy>

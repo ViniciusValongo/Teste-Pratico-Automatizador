@@ -1,0 +1,57 @@
+package br.com.viniciusvalongo.testepratico.attributes;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+
+import br.com.viniciusvalongo.testepratico.db.DB;
+import br.com.viniciusvalongo.testepratico.pageobjects.CheckoutPage;
+
+public class CheckoutPage_Actions {
+
+	static CheckoutPage cp;
+
+	public CheckoutPage_Actions(WebDriver driver) {
+
+		cp = new CheckoutPage(driver);
+	}
+
+	public void validarCorSelecionada() {
+		cp.getValidarProdutoCorSelecionada().getAttribute("title");
+	}
+	
+	public void validandoSoma() {
+		cp.getValidarSomaValorProduto().getText();
+		cp.getValidarSomaValorTotal().getText();
+		Assert.assertEquals(cp.getValidarSomaValorProduto().getText(),cp.getValidarSomaValorTotal().getText());
+	}
+	
+	public void realizarUpdate() {
+		Connection conn = null;
+		PreparedStatement st = null;		
+		try{
+			conn = DB.getConnection();
+			
+			st = conn.prepareStatement(
+					"UPDATE massas "
+					+ "SET COLOR = ? "
+					+ "WHERE "
+					+ "(COLOR = ?)");
+			
+			st.setObject(1, cp.getValidarProdutoCorSelecionada().getAttribute("title"));
+			st.setObject(2, "GRAY");
+					
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeConnection();
+		}
+	}
+
+}

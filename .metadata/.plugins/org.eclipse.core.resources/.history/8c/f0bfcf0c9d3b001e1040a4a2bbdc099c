@@ -1,0 +1,94 @@
+package br.com.viniciusvalongo.testepratico.pageobjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+
+public class HomePage {
+
+	private WebDriver driver;
+
+	@FindBy(linkText = "SPECIAL OFFER")
+	private WebElement specialOffer;
+	
+	@FindBy(css = "span.roboto-light.ng-binding")
+	private WebElement spanSeeOffer;
+	
+	@FindBy(css = "h1.roboto-thin.ng-binding")
+	private WebElement h1SeeOffer;
+	
+	@FindBy(css = "p.ng-binding")
+	private WebElement pSeeOffer;
+	
+	@FindBy(css = "a[href='#/product/3'] button#see_offer_btn.ng-scope")
+	private WebElement aSeeOffer;
+	
+	@FindBy(id = "see_offer_btn")
+	private WebElement btnSeeOffer;
+	
+
+	/*
+	@FindBy(xpath = "//*[@id=\"div-special-offer\"]/div/span")
+	private WebElement seeOffer;
+*/
+	@FindBy(id = "menuSearch")
+	private WebElement menuSearch;
+
+	@FindBy(id = "autoComplete")
+	private WebElement autoComplete;
+
+	@FindBy(css = "a.product.ng-scope")
+	private WebElement selecionandoProduto;
+
+	// CONSTRUCTOR
+	public HomePage(WebDriver driver) {
+		this.driver = driver;
+		// PageFactory.initElements(driver, this);
+		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20), this);
+	}
+
+	//
+	public WebElement getSpecialOffer() {
+		return specialOffer;
+	}
+
+	public void setSpecialOffer(WebElement specialOffer) {
+		this.specialOffer = specialOffer;
+	}
+
+	public WebElement getSeeOffer() {
+		return seeOffer;
+	}
+
+	public void setSeeOffer(WebElement seeOffer) {
+		this.seeOffer = seeOffer;
+	}
+
+	public WebElement getMenuSearch() {
+		return menuSearch;
+	}
+
+	public void setMenuSearch(WebElement menuSearch) {
+		this.menuSearch = menuSearch;
+	}
+
+	public WebElement getAutoComplete() {
+		return autoComplete;
+	}
+
+	public void setAutoComplete(WebElement autoComplete) {
+		this.autoComplete = autoComplete;
+	}
+
+	public WebElement getSelecionandoProduto() {
+		return selecionandoProduto;
+	}
+
+	public void setSelecionandoProduto(WebElement selecionandoProduto) {
+		this.selecionandoProduto = selecionandoProduto;
+	}
+
+}

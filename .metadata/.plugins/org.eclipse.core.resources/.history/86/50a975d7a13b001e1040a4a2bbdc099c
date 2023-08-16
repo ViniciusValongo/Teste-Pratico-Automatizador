@@ -1,0 +1,56 @@
+package br.com.viniciusvalongo.testepratico.pageobjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+
+public class CheckoutPage {
+	
+	private WebDriver driver;
+	
+	@FindBy(css = "span.productColor[title='GRAY']")
+	private WebElement validarProdutoCorSelecionada;
+	
+	
+	@FindBy(css = "p.price.roboto-regular.ng-binding")
+	private WebElement validarSomaValorProduto;
+	
+	@FindBy(css = "span.roboto-medium.totalValue.ng-binding")
+	private WebElement validarSomaValorTotal;
+	
+	//CONSTRUCTOR
+	public CheckoutPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(new AjaxElementLocatorFactory(driver, 20), this);
+	}
+
+	//
+	public WebElement getValidarProdutoCorSelecionada() {
+		return validarProdutoCorSelecionada;
+	}
+
+	public void setValidarProdutoCorSelecionada(WebElement validarProdutoCorSelecionada) {
+		this.validarProdutoCorSelecionada = validarProdutoCorSelecionada;
+	}
+
+	public WebElement getValidarSomaValorProduto() {
+		return validarSomaValorProduto;
+	}
+
+	public void setValidarSomaValorProduto(WebElement validarSomaValorProduto) {
+		this.validarSomaValorProduto = validarSomaValorProduto;
+	}
+
+	public WebElement getValidarSomaValorTotal() {
+		return validarSomaValorTotal;
+	}
+
+	public void setValidarSomaValorTotal(WebElement validarSomaValorTotal) {
+		this.validarSomaValorTotal = validarSomaValorTotal;
+	}
+	
+	
+
+}

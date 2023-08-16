@@ -1,0 +1,26 @@
+package br.com.viniciusvalongo.testepratico.pages;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+
+import br.com.viniciusvalongo.testepratico.attributes.CartAttributes;
+
+public class CartPage {
+	
+	static CartPage cp;
+	
+	public CartPage(WebDriver driver) {
+		
+		cp = new CartPage(driver);
+	}
+	
+	public void remover() {
+		cp.getRemoverProduto().click();;
+	}
+	
+	public void carrinhoVazio() {
+		String empyt = cp.getCarrinhoazio().getText();
+		Assert.assertEquals("Your shopping cart is empty",empyt);
+	}
+
+}

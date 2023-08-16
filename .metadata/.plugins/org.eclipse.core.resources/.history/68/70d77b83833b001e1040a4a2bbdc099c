@@ -1,0 +1,17 @@
+package br.com.viniciusvalongo.testepratico.pageobjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class CartPage {
+	
+	private WebDriver driver;
+	
+	@FindBy()
+	private WebElement removerProduto;
+	
+	@FindBy()
+	private WebElement carrinhoazio;
+
+}

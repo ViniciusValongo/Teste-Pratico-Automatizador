@@ -1,0 +1,16 @@
+package br.com.viniciusvalongo.testepratico.attributes;
+
+import org.openqa.selenium.WebDriver;
+
+import br.com.viniciusvalongo.testepratico.pageobjects.CheckoutPage;
+
+public class CheckoutPage_Actions {
+	
+	static CheckoutPage hp;
+	
+	public CheckoutPage_Actions(WebDriver driver) {
+		
+		hp = new CheckoutPage(driver);
+	}
+
+}

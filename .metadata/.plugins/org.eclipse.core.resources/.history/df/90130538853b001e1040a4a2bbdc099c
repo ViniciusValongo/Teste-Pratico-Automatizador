@@ -1,0 +1,44 @@
+package br.com.viniciusvalongo.testepratico.pageobjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class ProductPage {
+	
+	private WebDriver driver;
+	
+	@FindBy(css = "h1.roboto-regular.screen768.ng-binding")
+	private WebElement validandoProduto;
+	
+	@FindBy()
+	private WebElement salvandoCor;
+	
+	@FindBy()
+	private WebElement alterandoCor;
+	
+	@FindBy()
+	private WebElement AddToCart;
+	
+	@FindBy()
+	private WebElement popUp;
+	
+	@FindBy()
+	private WebElement produtoEncontrado;
+	
+	@FindBy()
+	private WebElement salvandoCorDiferenteDoBD;
+	
+	@FindBy()
+	private WebElement corDiferenteDoBD;
+	
+	@FindBy()
+	private WebElement alteraQuantidade;
+	
+	@FindBy()
+	private WebElement checkout;
+	
+	@FindBy()
+	private WebElement carrinhoCompras;
+
+}

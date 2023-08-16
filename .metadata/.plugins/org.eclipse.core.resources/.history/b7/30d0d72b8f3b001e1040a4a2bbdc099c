@@ -1,0 +1,25 @@
+package br.com.viniciusvalongo.testepratico.attributes;
+
+import org.openqa.selenium.WebDriver;
+
+import br.com.viniciusvalongo.testepratico.pageobjects.CheckoutPage;
+
+public class CheckoutPage_Actions {
+
+	static CheckoutPage cp;
+
+	public CheckoutPage_Actions(WebDriver driver) {
+
+		cp = new CheckoutPage(driver);
+	}
+
+	static void validarCorSelecionada() {
+		cp.getValidarProdutoCorSelecionada().getAttribute("title");
+	}
+	
+	static void validandoSoma() {
+		cp.getValidarSomaValorProduto().getText();
+		cp.getValidarSomaValorTotal().getText();		
+	}
+
+}

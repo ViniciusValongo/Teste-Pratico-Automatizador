@@ -1,0 +1,16 @@
+package br.com.viniciusvalongo.testepratico.attributes;
+
+import org.openqa.selenium.WebDriver;
+
+import br.com.viniciusvalongo.testepratico.pageobjects.CartPage;
+
+public class CartPage_Actions {
+	
+	static CartPage hp;
+	
+	public CartPage_Actions(WebDriver driver) {
+		
+		hp = new CartPage(driver);
+	}
+
+}

@@ -1,0 +1,88 @@
+package br.com.viniciusvalongo.testepratico.pages;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import br.com.viniciusvalongo.testepratico.attributes.ProductAttributes;
+import br.com.viniciusvalongo.testepratico.db.DB;
+
+public class ProductPage {
+	
+	ProductAttributes pp = new ProductAttributes();
+	
+	private WebDriver driver;
+	
+	//CONSTRUCTOR
+	public ProductPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, pp);
+	}
+	
+	
+	
+	
+	
+	public void validandoNameProduct() {
+		pp.getValidandoProduto().getText();
+		Connection conn = null;
+		PreparedStatement st = null;		
+		try{
+			conn = DB.getConnection();
+			
+			st = conn.prepareStatement(
+					"UPDATE massas "
+					+ "SET COLOR = ? "
+					+ "WHERE "
+					+ "(COLOR = ?)");
+			
+			st.setObject(1, "BLUE");
+			st.setObject(2, pp.getValidandoProduto().getText());
+					
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void alterandoCor() {
+		String cor = pp.getSalvandoCor().getAttribute("title");
+		pp.getAlterandoCor().click();;
+		Assert.assertEquals("GRAY",cor);
+	}
+	
+	public void addCart() {
+		pp.getAddToCart().click();;
+	}
+	
+	public void popUp() {
+		pp.getPopUp().click();;
+	}
+	
+	
+	public void corDiferenteBD() {
+		String cor = pp.getSalvandoCorDiferenteDoBD().getAttribute("title");
+		pp.getCorDiferenteDoBD().click();;
+		Assert.assertEquals("RED",cor);
+	}
+	
+	public void alterandoQuantity() {
+		pp.getAlteraQuantidade().click();;
+	}
+	
+	
+	public void checkout() {
+		pp.getCheckout().click();;
+	}
+	
+	
+	public void carrinhoCompras() {
+		pp.getCarrinhoCompras().click();
+	}
+	
+
+}

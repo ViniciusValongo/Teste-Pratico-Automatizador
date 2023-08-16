@@ -1,0 +1,25 @@
+1692108840160	Rename type 'HomePage'
+1692108852364	Rename compilation unit 'PageObjects1.java'
+1692112116442	Rename type 'HomePage'
+1692112217476	Rename type 'HomeObjects'
+1692114311721	Delete element
+1692118367828	Rename type 'ProductPages_Actions'
+1692118503525	Rename package 'br.com.viniciusvalongo.testepratico.steps'
+1692118579621	Delete element
+1692120482815	Delete element
+1692120492065	Move compilation unit
+1692122277253	Delete element
+1692127739003	Delete element
+1692133339177	Move compilation units
+1692133347141	Move compilation units
+1692133354663	Move compilation units
+1692133357975	Delete element
+1692191733472	Rename package 'br.com.viniciusvalongo.testepratico.pageobjects'
+1692191749470	Rename type 'CartPage_Actions'
+1692191779968	Rename type 'CartPage'
+1692191862639	Rename type 'CheckoutPage'
+1692191890204	Rename type 'CheckoutPage_Actions'
+1692191978643	Rename type 'HomePage'
+1692191993442	Rename type 'ProductPage'
+1692192004082	Rename type 'HomePage_Action'
+1692192011459	Rename type 'ProductPage_Actions'

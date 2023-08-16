@@ -1,0 +1,185 @@
+package br.com.viniciusvalongo.testepratico;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import br.com.viniciusvalongo.testepratico.db.DB;
+
+public class PageObject {
+	
+	 private final WebDriver driver;
+
+	    public PageObject(WebDriver driver) {
+	        this.driver = driver;
+	    }
+
+	    public void acessarSite(String url) {
+	    	driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);
+	        driver.get(url);
+	        driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);
+	       
+	    }
+
+	    public void clicarOpcaoSpecialOffer() {
+	        driver.findElement(By.linkText("SPECIAL OFFER")).click();
+	    }
+	    
+	    public void clicarBotaoSeeOffer() {
+	    	driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);	    	
+	    	driver.findElement(By.xpath("//*[@id=\"div-special-offer\"]/div/span")).click();
+			driver.navigate().to("https://advantageonlineshopping.com/#/product/3");
+	      
+		}
+
+		public void validandoProduto() {
+			String productName = driver.findElement(By.xpath("//*[@id=\"Description\"]/h1")).getText();
+			Connection conn = null;
+			Statement st = null;
+			ResultSet rs = null;
+			
+			try{
+				conn = DB.getConnection();
+				st = conn.createStatement();			
+				rs = st.executeQuery("SELECT * FROM banco_teste_automacao.massas;");
+				while(rs.next()) {
+					assertEquals(rs.getString("NAME_PRODUCT"), productName);
+				}
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+
+		public void alterarCorDoProduto() {
+			String cor = driver.findElement(By.cssSelector("span#bunny[title='GRAY']")).getAttribute("title");;
+			driver.findElement(By.cssSelector("span#bunny[title='GRAY']")).click();;
+			Assert.assertEquals("GRAY",cor);
+		}
+		
+		
+		public void clicarNoBotãoAddToCart() {
+			driver.findElement(By.cssSelector("button.roboto-medium.ng-scope[name='save_to_cart']")).click();
+			driver.findElement(By.id("checkOutPopUp")).click();
+			Assertions.assertTrue(driver.getPageSource().contains("SHOPPING CART"));
+
+		}
+		
+		
+		public void validarProdutoComCorSelecionada() {
+			String colorProduct = driver.findElement(By.cssSelector("span.productColor[title='GRAY']")).getAttribute("title");
+			assertEquals(colorProduct, "GRAY");
+			
+			Connection conn = null;
+			PreparedStatement st = null;		
+			try{
+				conn = DB.getConnection();
+				
+				st = conn.prepareStatement(
+						"UPDATE massas "
+						+ "SET COLOR = ? "
+						+ "WHERE "
+						+ "(COLOR = ?)");
+				
+				st.setObject(1, "BLUE");
+				st.setObject(2, colorProduct);
+						
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		public void pesquisoEDigitoProduto() {
+			driver.findElement(By.id("menuSearch")).click();
+			driver.findElement(By.id("autoComplete")).sendKeys("HP Pavilion 15z Touch Laptop");
+			Actions act = new Actions(driver);
+			act.sendKeys(Keys.ENTER).build().perform();
+		}
+		
+		
+		public void produtoPesquisado() {
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			driver.findElement(By.xpath("/html/body/div[3]/section/article/div[3]/div/div/div[2]/ul/li")).click();		
+		}
+		
+		
+		public void corDiferente() {
+		
+		}
+		
+		
+		public void alterarQuantidade() {
+			driver.findElement(By.xpath("/html/body/div[3]/section/article[1]/div[2]/div[2]/div/div[2]/e-sec-plus-minus/div/div[3]")).click();
+		 	
+		}
+		
+		
+		public void paginaCheckout() {
+			//driver.findElement(By.xpath("/html/body/div[3]/section/article/div[1]/table/tfoot/tr[2]/td/button")).click();
+			driver.findElement(By.id("checkOutPopUp")).click();
+		}
+		
+		public void validarSoma() {
+			String priceItems = driver.findElement(By.xpath("/html/body/div[3]/section/article/div/div[2]/tool-tip-cart/div/table/tbody/tr/td[3]/p")).getText();	            
+	        String totalValue = driver.findElement(By.xpath("/html/body/div[3]/section/article/div/div[2]/div[2]/label[2]/span")).getText();
+	        
+	        Assert.assertEquals(priceItems,totalValue);
+		}
+		
+		public void realizarUpdate() {
+			Connection conn = null;
+			PreparedStatement st = null;		
+			try{
+				conn = DB.getConnection();
+				
+				st = conn.prepareStatement(
+						"UPDATE massas "
+						+ "SET COLOR = ? "
+						+ "WHERE "
+						+ "(COLOR = ?)");
+				
+				st.setObject(1, "BLUE");
+				st.setObject(2, "GRAY");
+						
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			finally {
+				DB.closeStatement(st);
+				DB.closeConnection();
+			}
+		}
+		
+		
+		public void carrinhoDeCompras() {
+			driver.findElement(By.xpath("/html/body/header/nav/ul/li[2]/a")).click();
+		}
+		
+		
+		public void removerProduto() {
+			driver.findElement(By.xpath("/html/body/div[3]/section/article/div[1]/table/tbody/tr/td[6]/span/a[3]")).click();
+		}
+		
+		
+		public void carrinhoVazio() {	
+			Assertions.assertTrue(driver.getPageSource().contains("Your shopping cart is empty"));
+		}
+		
+		
+		
+}

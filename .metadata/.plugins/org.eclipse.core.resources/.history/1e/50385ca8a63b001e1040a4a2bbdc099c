@@ -1,0 +1,121 @@
+package br.com.viniciusvalongo.testepratico.tests;
+
+import org.openqa.selenium.WebDriver;
+
+import br.com.viniciusvalongo.testepratico.PageObject;
+import br.com.viniciusvalongo.testepratico.WebDriverFactory;
+import br.com.viniciusvalongo.testepratico.attributes.CartPage_Actions;
+import br.com.viniciusvalongo.testepratico.attributes.CheckoutPage_Actions;
+import br.com.viniciusvalongo.testepratico.attributes.HomePage_Action;
+import br.com.viniciusvalongo.testepratico.attributes.ProductPage_Actions;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Então;
+import io.cucumber.java.pt.Quando;
+
+public class Acesso {
+	
+	private final WebDriver driver = WebDriverFactory.getDriver();
+	private final PageObject pg = new PageObject(driver);
+	private final HomePage_Action hp = new HomePage_Action(driver);
+	private final ProductPage_Actions pp  = new ProductPage_Actions(driver);
+	private final CheckoutPage_Actions cc = new CheckoutPage_Actions(driver);
+	private final CartPage_Actions cp = new CartPage_Actions(driver);
+	
+	@Dado("que acessei o site advantage online shopping")
+	public void que_acessei_o_site_advantage_online_shopping() {
+		pg.acessarSite("https://advantageonlineshopping.com/#/");
+	}
+
+	@Quando("clico na opção Special Offer no menu")
+	public void clico_na_opção_special_offer_no_menu() {
+		hp.specialOffer();
+	}
+
+	@Quando("clico no botão See offer")
+	public void clico_no_botão_see_offer() {
+		pg.clicarBotaoSeeOffer();
+	}
+
+	@Então("devo validar as especificações do produto de acordo com as informações retornadas do banco de automação")
+	public void devo_validar_as_especificações_do_produto_de_acordo_com_as_informações_retornadas_do_banco_de_automação() {
+		pp.validandoNameProduct();
+		WebDriverFactory.quitDriver();
+	}
+
+	@Quando("altero a cor do produto de acordo com a cor informada no banco de automação")
+	public void altero_a_cor_do_produto_de_acordo_com_a_cor_informada_no_banco_de_automação() {
+		pp.alterandoCor();
+
+	}
+	@Quando("clico no botão Add to cart")
+	public void clico_no_botão_add_to_cart() {
+		pp.addCart();
+	}
+
+	@Então("devo validar se o produto foi adicionado ao carrinho com a cor selecionada")
+	public void devo_validar_se_o_produto_foi_adicionado_ao_carrinho_com_a_cor_selecionada() {
+		cc.validarCorSelecionada();
+		WebDriverFactory.quitDriver();
+	}
+
+	@Quando("pesquiso o produto clicando no ícone de lupa")
+	public void pesquiso_o_produto_clicando_no_ícone_de_lupa() {
+		hp.menuSeach();
+	}
+
+	@Quando("seleciono o produto pesquisado")
+	public void seleciono_o_produto_pesquisado() {
+		hp.selecionandoProduto();
+	}
+
+	@Quando("altero a cor do produto para uma diferente da existente no banco de automação")
+	public void altero_a_cor_do_produto_para_uma_diferente_da_existente_no_banco_de_automação() {
+		pp.corDiferenteBD();
+	}
+
+	@Quando("altero a quantidade de produtos que desejo comprar")
+	public void altero_a_quantidade_de_produtos_que_desejo_comprar() {
+		pp.alterandoQuantity();
+	 	
+	}
+
+	@Quando("acesso a página de checkout")
+	public void acesso_a_página_de_checkout() {
+		pp.checkout();
+	}
+
+	@Então("devo validar que a soma dos preços corresponde ao total apresentado na página de checkout")
+	public void devo_validar_que_a_soma_dos_preços_corresponde_ao_total_apresentado_na_página_de_checkout() {
+		cc.validandoSoma();
+	}
+
+	@Então("realizo um update no banco de automação para alterar a cor existente para a cor selecionada no teste")
+	public void realizo_um_update_no_banco_de_automação_para_alterar_a_cor_existente_para_a_cor_selecionada_no_teste() {
+		cc.realizarUpdate();
+		WebDriverFactory.quitDriver();
+	}
+
+	@Dado("que acessei o site https:\\\\/\\\\/advantageonlineshopping.com")
+	public void que_acessei_o_site_https_advantageonlineshopping_com() {
+		pg.acessarSite("https://advantageonlineshopping.com/#/");
+	}
+
+	@Quando("clico no carrinho de compras")
+	public void clico_no_carrinho_de_compras() {
+		pp.carrinhoCompras();
+	}
+
+	@Quando("removo o produto do carrinho de compras")
+	public void removo_o_produto_do_carrinho_de_compras() {
+		cp.remover();
+	}
+
+	@Então("devo validar que o carrinho de compras está vazio")
+	public void devo_validar_que_o_carrinho_de_compras_está_vazio() {		
+		cp.carrinhoVazio();
+		WebDriverFactory.quitDriver();
+
+	}
+	
+
+}

@@ -1,0 +1,39 @@
+package br.com.viniciusvalongo.testepratico.attributes;
+
+import org.openqa.selenium.WebDriver;
+
+import br.com.viniciusvalongo.testepratico.pageobjects.HomePage;
+
+public class HomePage_Action {
+	
+	
+	static HomePage hp;
+		
+	
+	public HomePage_Action(WebDriver driver) {
+		
+		hp = new HomePage(driver);
+	}
+		
+	public void specialOffer() {
+		hp.getSpecialOffer().click();
+		
+	}
+	
+	public void seeOffer() {
+		hp.getBtnSeeOffer().click();
+	}
+	
+	public void menuSeach() {
+		hp.getMenuSearch().click();;
+		hp.getAutoComplete().sendKeys("HP PAVILION 15Z TOUCH LAPTOP");
+				
+	}
+	
+	public void selecionadoProduto() {
+		hp.getSelecionandoProduto();
+	}
+
+	
+	
+}

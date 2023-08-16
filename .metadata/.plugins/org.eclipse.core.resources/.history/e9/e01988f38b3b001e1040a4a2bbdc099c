@@ -1,0 +1,16 @@
+package br.com.viniciusvalongo.testepratico.attributes;
+
+import org.openqa.selenium.WebDriver;
+
+import br.com.viniciusvalongo.testepratico.pageobjects.ProductPage;
+
+public class ProductPages_Actions {
+	
+	static ProductPage pp;
+	
+	public ProductPages_Actions(WebDriver driver) {
+		
+		pp = new ProductPage(driver);
+	}
+
+}

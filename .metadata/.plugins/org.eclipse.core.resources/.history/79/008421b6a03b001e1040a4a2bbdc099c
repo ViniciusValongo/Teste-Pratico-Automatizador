@@ -1,0 +1,32 @@
+package br.com.viniciusvalongo.testepratico;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class PageObject {
+	
+	 private final WebDriver driver;
+
+	    public PageObject(WebDriver driver) {
+	        this.driver = driver;
+	    }
+
+	    public void acessarSite(String url) {
+	    	driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);
+	        driver.get(url);	       
+	    }
+
+	    
+	    public void clicarBotaoSeeOffer() {
+	    	driver.manage().timeouts().implicitlyWait(100000, TimeUnit.MILLISECONDS);
+	    	driver.findElement(By.xpath("//*[@id=\"div-special-offer\"]/div/span")).click();
+	    	driver.navigate().to("https://advantageonlineshopping.com/#/product/3");
+	      
+		}
+
+
+		
+		
+}

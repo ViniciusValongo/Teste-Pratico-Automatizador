@@ -1,0 +1,27 @@
+package br.com.viniciusvalongo.testepratico;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CucumberContext {
+
+    private static WebDriver driver;
+    private static PageObject pageObject;
+
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver-win64\\chromedriver.exe");
+            driver = new ChromeDriver();
+            driver.manage().window().maximize();           
+        }
+        return driver;
+    }
+
+    public static PageObject getPageObject() {
+        if (pageObject == null) {
+            pageObject = new PageObject(getDriver());
+        }
+        return pageObject;
+    }
+}
+

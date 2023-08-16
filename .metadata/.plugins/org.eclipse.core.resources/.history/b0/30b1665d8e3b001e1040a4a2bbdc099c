@@ -1,0 +1,19 @@
+package br.com.viniciusvalongo.testepratico.tests;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TestJunit {
+	
+	static WebDriver driver;
+	
+	@BeforeAll()
+	static void abrirBrowser() {		
+		System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver-win64\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://advantageonlineshopping.com/#/");		
+		driver.manage().window().maximize();
+	}
+
+}

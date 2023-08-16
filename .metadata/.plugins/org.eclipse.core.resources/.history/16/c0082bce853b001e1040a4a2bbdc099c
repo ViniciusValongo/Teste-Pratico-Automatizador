@@ -1,0 +1,44 @@
+package br.com.viniciusvalongo.testepratico.pageobjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class ProductPage {
+	
+	private WebDriver driver;
+	
+	@FindBy(css = "h1.roboto-regular.screen768.ng-binding")
+	private WebElement validandoProduto;
+	
+	@FindBy(css ="span#bunny[title='GRAY']")
+	private WebElement salvandoCor;
+	
+	@FindBy(css = "span#bunny[title='GRAY']")
+	private WebElement alterandoCor;
+	
+	@FindBy(css = "button.roboto-medium.ng-scope[name='save_to_cart']")
+	private WebElement AddToCart;
+	
+	@FindBy(id = "checkOutPopUp")
+	private WebElement popUp;
+	
+	@FindBy(css = "a.product.ng-scope")
+	private WebElement produtoEncontrado;
+	
+	@FindBy(css = "span#bunny.bunny.productColor.ng-scope.RED")
+	private WebElement salvandoCorDiferenteDoBD;
+	
+	@FindBy(css = "span#bunny.bunny.productColor.ng-scope.RED")
+	private WebElement corDiferenteDoBD;
+	
+	@FindBy(css = "div.plus[increment-value-attr='+']")
+	private WebElement alteraQuantidade;
+	
+	@FindBy(id = "checkOutPopUp")
+	private WebElement checkout;
+	
+	@FindBy(id = "shoppingCartLink")
+	private WebElement carrinhoCompras;
+
+}

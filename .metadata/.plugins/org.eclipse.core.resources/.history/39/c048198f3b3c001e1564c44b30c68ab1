@@ -1,0 +1,40 @@
+package br.com.viniciusvalongo.testepratico.attributes;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class CartAttributes {
+	
+
+	
+	@FindBy(linkText = "REMOVE")
+	private WebElement removerProduto;
+	
+	@FindBy(css = "label.roboto-bold.ng-scope")
+	private WebElement carrinhoazio;
+	
+
+
+	public WebElement getRemoverProduto() {
+		return removerProduto;
+	}
+
+
+	public void setRemoverProduto(WebElement removerProduto) {
+		this.removerProduto = removerProduto;
+	}
+
+
+	public WebElement getCarrinhoazio() {
+		return carrinhoazio;
+	}
+
+
+	public void setCarrinhoazio(WebElement carrinhoazio) {
+		this.carrinhoazio = carrinhoazio;
+	}
+	
+	//
+	
+	
+}

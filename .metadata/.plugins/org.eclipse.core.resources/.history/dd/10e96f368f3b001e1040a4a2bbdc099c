@@ -1,0 +1,57 @@
+package br.com.viniciusvalongo.testepratico.attributes;
+
+import org.openqa.selenium.WebDriver;
+
+import br.com.viniciusvalongo.testepratico.pageobjects.ProductPage;
+
+public class ProductPage_Actions {
+	
+	static ProductPage pp;
+	
+	public ProductPage_Actions(WebDriver driver) {
+		
+		pp = new ProductPage(driver);
+	}
+	
+	static void validandoNameProduct() {
+		pp.getValidandoProduto().getText();
+	}
+	
+	static void alterandoCor() {
+		pp.getSalvandoCor().getAttribute("title");
+		pp.getAlterandoCor().click();;
+	}
+	
+	static void addCart() {
+		pp.getAddToCart().click();;
+	}
+	
+	static void popUp() {
+		pp.getPopUp().click();;
+	}
+	
+	static void produtoEncontrado() {
+		pp.getProdutoEncontrado().click();;
+	}
+	
+	static void corDiferenteBD() {
+		pp.getSalvandoCorDiferenteDoBD().getAttribute("title");
+		pp.getCorDiferenteDoBD().click();;
+	}
+	
+	static void alterandoQuantity() {
+		pp.getAlteraQuantidade().click();;
+	}
+	
+	
+	static void checkout() {
+		pp.getCheckout().click();;
+	}
+	
+	
+	static void carrinhoCompras() {
+		pp.getCarrinhoCompras().click();;
+	}
+	
+
+}

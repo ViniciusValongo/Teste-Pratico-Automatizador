@@ -1,0 +1,206 @@
+package br.com.viniciusvalongo.testepratico;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
+import br.com.viniciusvalongo.testepratico.db.DB;
+
+public class PageObject {
+	
+	 private final WebDriver driver;
+
+	    public PageObject(WebDriver driver) {
+	        this.driver = driver;
+	    }
+
+	    public void acessarSite(String url) {
+	    	driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);
+	        driver.get(url);
+	        driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);
+	       
+	    }
+
+	    public void clicarOpcaoSpecialOffer() {
+	        driver.findElement(By.linkText("SPECIAL OFFER")).click();
+	    }
+	    
+	    public void clicarBotaoSeeOffer() {
+	    	driver.manage().timeouts().implicitlyWait(100000, TimeUnit.MILLISECONDS);
+	    	driver.findElement(By.xpath("//*[@id=\"div-special-offer\"]/div/span")).click();
+	        try {
+	            // Aguarde um pouco para garantir que a página esteja totalmente carregada
+	            Thread.sleep(20);
+	            
+	            // Encontre o elemento <div> que está bloqueando o <span>
+	            WebElement divElement = driver.findElement(By.id("div-special-offer"));
+	            
+	            // Clique no elemento <div>
+	            divElement.click();
+	            
+	            // Aguarde novamente para permitir que a ação seja processada
+	            Thread.sleep(20);
+	            
+	            // Agora, encontre e clique no elemento <span>
+	            WebElement spanElement = driver.findElement(By.cssSelector("span.roboto-light.ng-binding"));
+	            spanElement.click();
+	        } catch (InterruptedException e) {
+	            e.printStackTrace();
+	        }
+	    	//driver.navigate().to("https://advantageonlineshopping.com/#/product/3");
+	      
+		}
+
+		public void validandoProduto() {
+			String productName = driver.findElement(By.xpath("//*[@id=\"Description\"]/h1")).getText();
+			Connection conn = null;
+			Statement st = null;
+			ResultSet rs = null;
+			
+			try{
+				conn = DB.getConnection();
+				st = conn.createStatement();			
+				rs = st.executeQuery("SELECT * FROM banco_teste_automacao.massas;");
+				while(rs.next()) {
+					assertEquals(rs.getString("NAME_PRODUCT"), productName);
+				}
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}	
+		}
+
+		public void alterarCorDoProduto() {
+			String cor = driver.findElement(By.cssSelector("span#bunny[title='GRAY']")).getAttribute("title");;
+			driver.findElement(By.cssSelector("span#bunny[title='GRAY']")).click();;
+			Assert.assertEquals("GRAY",cor);
+		}
+		
+		
+		public void clicarNoBotãoAddToCart() {
+			driver.findElement(By.cssSelector("button.roboto-medium.ng-scope[name='save_to_cart']")).click();
+			driver.findElement(By.id("checkOutPopUp")).click();
+
+		}
+		
+		
+		public void validarProdutoComCorSelecionada() {
+			String colorProduct = driver.findElement(By.cssSelector("span.productColor[title='GRAY']")).getAttribute("title");
+			assertEquals(colorProduct, "GRAY");
+			
+			Connection conn = null;
+			PreparedStatement st = null;		
+			try{
+				conn = DB.getConnection();
+				
+				st = conn.prepareStatement(
+						"UPDATE massas "
+						+ "SET COLOR = ? "
+						+ "WHERE "
+						+ "(COLOR = ?)");
+				
+				st.setObject(1, "BLUE");
+				st.setObject(2, colorProduct);
+						
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		public void pesquisoEDigitoProduto() {
+			driver.findElement(By.id("menuSearch")).click();
+			driver.findElement(By.id("autoComplete")).sendKeys("HP Pavilion 15z Touch Laptop");
+			Actions act = new Actions(driver);
+			act.sendKeys(Keys.ENTER).build().perform();
+		}
+		
+		
+		public void produtoPesquisado() {
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			driver.findElement(By.cssSelector("a.product.ng-scope")).click();		
+		}
+		
+		
+		public void corDiferente() {
+			String cor = driver.findElement(By.cssSelector("span#bunny.bunny.productColor.ng-scope.RED")).getAttribute("title");
+			driver.findElement(By.cssSelector("span#bunny.bunny.productColor.ng-scope.RED")).click();
+			Assert.assertEquals("RED",cor);
+			
+		}
+		
+		
+		public void alterarQuantidade() {
+			driver.findElement(By.cssSelector("div.plus[increment-value-attr='+']")).click();
+		 	
+		}
+		
+		
+		public void paginaCheckout() {
+			driver.findElement(By.id("checkOutPopUp")).click();
+		}
+		
+		public void validarSoma() {
+			String priceItems = driver.findElement(By.cssSelector("p.price.roboto-regular.ng-binding")).getText();	            
+	        String totalValue = driver.findElement(By.cssSelector("span.roboto-medium.totalValue.ng-binding")).getText();
+	        
+	        Assert.assertEquals(priceItems,totalValue);
+		}
+		
+		public void realizarUpdate() {
+			Connection conn = null;
+			PreparedStatement st = null;		
+			try{
+				conn = DB.getConnection();
+				
+				st = conn.prepareStatement(
+						"UPDATE massas "
+						+ "SET COLOR = ? "
+						+ "WHERE "
+						+ "(COLOR = ?)");
+				
+				st.setObject(1, "RED");
+				st.setObject(2, "GRAY");
+						
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			finally {
+				DB.closeStatement(st);
+				DB.closeConnection();
+			}
+		}
+		
+		
+		public void carrinhoDeCompras() {
+			driver.findElement(By.id("shoppingCartLink")).click();
+		}
+		
+		
+		public void removerProduto() {
+			driver.findElement(By.linkText("REMOVE")).click();
+		}
+		
+		
+		public void carrinhoVazio() {	
+			Assertions.assertTrue(driver.getPageSource().contains("Your shopping cart is empty"));
+		}
+		
+		
+		
+}
